@@ -1,0 +1,316 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@400;600;700&display=swap" rel="stylesheet">
+  <title>체력 단련</title>
+  <style>
+    :root{ --gap: 2vw; --radius: 12px; --border: 2px solid black; --fg:#111; --bg:#Fff; --muted:#787878; --card:#fff; }
+    *{box-sizing:border-box}
+    html,body{height:100%;font-family: 'Noto Serif KR', serif; }
+    body{ margin:0;color:var(--fg); background:var(--bg); display:flex; min-height:100dvh; }
+    .page{width:min(1080px, 100%); margin:0 auto; display:flex; flex-direction:column; gap:var(--gap); padding:var(--gap)}
+    .hero{flex:1; min-height:48dvh; padding:3vw;border:1.4px solid black; border-radius:9px;font-weight:600;font-size:5vw;}
+    .subhead{padding:13px 2vw; font-weight:600; font-size:3.2vw; height:4vh;width:25vw;display:flex;align-items:center;justify-content:center;border:1.4px solid black; border-radius:9px; position:relative;}
+    .day-nav.outside{position:relative;margin-top:-36px;display:flex;gap:8px;justify-content:flex-end;padding-right:12px;}
+    .day-nav.outside button{ padding:0; border:none; border-radius:10px; background:#fff; cursor:pointer;}
+    .strip{padding:var(--gap);border:1.4px solid black;  border-radius:9px;position:relative;}
+    .strip .icons{display:grid; grid-template-columns:repeat(7, 1fr); gap:9px; margin-bottom:9px; }
+    .icons-edit-bar{ position:absolute; right:12px; top:-5vh; }
+    .icons-edit{ padding:4px 10px; border:none; border-radius:10px; background:#fff; cursor:pointer; }
+    .icon{height:44px; border:var(--border); border-radius:10px; background:var(--card); height:3vh;font-size:3vw;font-weight:600;border:1.4px solid black;}
+    .strip .cards{ display:grid; grid-template-columns:repeat(7, 1fr); gap:9px; }
+    .card{height:160px;  border:var(--border); border-radius:9px; height:19vh; font-size:4vw;line-height: 1.5;}
+    nav.bottom{ position:sticky; bottom:0; padding:0; display:grid; grid-template-columns:repeat(6,1fr); gap:9px; z-index:5;  font-size:4.5vw;}
+    .nav-btn{height:10vh; border:var(--border); border-radius:9px; border:1.4px solid black;}
+    button,a.btn{all:unset; display:block; cursor:pointer; text-align:center; padding:10px; border-radius:10px; border:var(--border); background:#f6f6f6}
+    .row{display:flex; gap:10px}
+    .muted{color:var(--muted); font-size:14px}
+    .icon, .card, .nav-btn { display:flex; align-items:center; justify-content:center; text-align:center; }
+    .s {border:1.4px solid red !important;}
+    .t {border:1.4px solid blue !important;}
+    .task{ display:flex; align-items:center; width:100%; }
+    .task span{ order:1; margin-right:auto; }
+    .task input[type="checkbox"]{ order:2; margin-left:9px;}
+    .icon.done { background:#FFF3B0; border-color:#F1C40F;}
+    .sheet{position:fixed;left:50%;transform:translateX(-50%);top:0;width:100vw;background:#fff;border:2px solid #222;border-radius:16px;box-shadow:0 10px 30px rgba(0,0,0,.2);z-index:4; height: 100vh;}
+    .sheet[hidden]{display:none}
+    .sheet-actions{display:flex;gap:8px}
+    .sheet-head{display:flex;align-items:center;justify-content:space-between;padding:10px 14px;border-bottom:1px solid #eee;font-weight:700}
+    .sheet-body{padding:14px;max-height:40vh;overflow:auto}
+    .sheet-body textarea{width:100%;min-height:28vh;border:1px solid #ccc;border-radius:10px;padding:10px;font:inherit;resize:vertical}
+    .sheet-body .save-row{display:flex;justify-content:flex-end;gap:8px;margin-top:8px}
+    .sheet-body .save-btn,.sheet-body .cancel-btn{padding:6px 12px;border:1px solid #222;border-radius:10px;background:#fff;cursor:pointer}
+    .sheet-edit,.sheet-close{border:1px solid #222;border-radius:10px;background:#fff;cursor:pointer;padding:4px 10px}  
+  </style>
+</head>
+<body>
+  <main class="page">
+
+    <section class="subhead"></section>
+
+    <div class="day-nav outside">
+      <button type="button" class="prev">◀</button>
+      <button type="button" class="next">▶</button>
+    </div>
+
+    <section class="hero" id="page-home" role="region" aria-label="메인"></section>
+
+    <section class="subhead">주간 진행표</section>
+
+    <section class="strip">
+    <div class="icons-edit-bar"><button type="button" class="icons-edit">✏️</button></div>
+
+      <div class="icons">
+        <div class="icon s">日</div>
+        <div class="icon">月</div>
+        <div class="icon">火</div>
+        <div class="icon">水</div>
+        <div class="icon">木</div>
+        <div class="icon">金</div>
+        <div class="icon t">土</div>
+      </div>
+      <div class="cards">
+        <div class="card s">養生<br>體鍛<br>飛越<br>飛徙</div>
+        <div class="card">靜養<br>養生</div>
+        <div class="card">養生<br>體鍛<br>正形<br>飛徙</div>
+        <div class="card">養生<br>體鍛<br>游泳<br>飛徙</div>
+        <div class="card">養生<br>體鍛<br>飛越<br>飛徙</div>
+        <div class="card">養生<br>體鍛<br>正形<br>飛徙</div>
+        <div class="card t">養生<br>體鍛<br>游泳</div>
+      </div>
+    </section>
+
+    <div id="sheet" class="sheet" hidden>
+      <div class="sheet-head">
+        <span class="sheet-title"></span>
+        <div class="sheet-actions">
+          <button type="button" class="sheet-edit">✏️</button>
+          <button type="button" class="sheet-close">×</button>
+        </div>
+      </div>
+      <div class="sheet-body"></div>
+    </div>
+
+    <nav class="bottom" aria-label="하단 내비게이션">
+      <div class="nav-btn">體鍛</div>
+      <div class="nav-btn">正形</div>
+      <div class="nav-btn">飛徙</div>
+      <div class="nav-btn">飛越</div>
+      <div class="nav-btn">游泳</div>
+      <div class="nav-btn">養生</div>
+    </nav>
+  </main>
+
+  <script>
+  const tasksByDay = {
+    0: [""],
+    1: [""],
+    2: [""],
+    3: [""],
+    4: [""],
+    5: [""],
+    6: [""]
+  };
+
+  const weekday = ["☀️ 일", "🌙 월", "🔥 화", "💧 수", "🌲 목", "💰 금", "🌍 토"];
+  const hero = document.getElementById("page-home");
+  let currentDay = new Date().getDay();
+
+  function weekKey() {
+    const now = new Date();
+    const localMid = new Date(now.getFullYear(), now.getMonth(), now.getDate());
+    const sunday = new Date(localMid);
+    sunday.setDate(localMid.getDate() - localMid.getDay());
+    const y = sunday.getFullYear();
+    const m = String(sunday.getMonth() + 1).padStart(2, "0");
+    const d = String(sunday.getDate()).padStart(2, "0");
+    return `${y}-${m}-${d}`;
+  }
+
+  let CURRENT_WK = weekKey();
+  let STORE_KEY = `tasksState_${CURRENT_WK}`;
+  let state = JSON.parse(localStorage.getItem(STORE_KEY) || "{}");
+
+  function updateDayDone(day){
+    const list = getTasksFor(day);
+    const arr  = state[day] || [];
+    const allDone = list.length > 0 && list.every((_, i) => arr[i] === true);
+    const icon = document.querySelector(`.icons .icon:nth-child(${day+1})`);
+    if (icon) icon.classList.toggle("done", allDone);
+  }
+
+  function saveAndUpdate(day) {
+    localStorage.setItem(STORE_KEY, JSON.stringify(state));
+    updateDayDone(day);
+  }
+
+  function renderDay() {
+    const [emoji, name] = weekday[currentDay].split(/\s+/);
+    document.querySelector(".subhead").textContent = `${name}요일 (${emoji})`;
+    hero.innerHTML = "";
+    const list = tasksByDay[currentDay] || [];
+    list.forEach((t, i) => {
+      const div = document.createElement("div");
+      div.className = "task";
+      const checked = (state[currentDay]?.[i]) === true;
+      div.innerHTML = `<span>${t}</span><input type="checkbox" data-idx="${i}" ${checked ? "checked" : ""}>`;
+      hero.appendChild(div);
+    });
+    updateDayDone(currentDay);
+  }
+
+  hero.addEventListener("change", (e) => {
+    if (e.target.matches('input[type="checkbox"][data-idx]')) {
+      const i = Number(e.target.dataset.idx);
+      state[currentDay] = state[currentDay] || [];
+      state[currentDay][i] = e.target.checked;
+      saveAndUpdate(currentDay);
+    }
+  });
+
+  const prevBtn = document.querySelector(".day-nav.outside .prev");
+  const nextBtn = document.querySelector(".day-nav.outside .next");
+  if (prevBtn) prevBtn.onclick = () => { currentDay = (currentDay + 6) % 7; renderDay(); };
+  if (nextBtn) nextBtn.onclick = () => { currentDay = (currentDay + 1) % 7; renderDay(); };
+
+  for (let d = 0; d < 7; d++) updateDayDone(d);
+
+  setInterval(() => {
+    const wk = weekKey();
+    if (wk !== CURRENT_WK) {
+      CURRENT_WK = wk;
+      STORE_KEY = `tasksState_${CURRENT_WK}`;
+      state = JSON.parse(localStorage.getItem(STORE_KEY) || "{}");
+      for (let d = 0; d < 7; d++) updateDayDone(d);
+      renderDay();
+    }
+  }, 30000);
+
+  renderDay();
+
+  const NAV_LABELS = ["體鍛", "正形", "飛徙", "飛越", "游泳", "養生"];
+  const NAV_CONTENT = ["", "", "", "", "", ""];
+
+  const sheet = document.getElementById("sheet");
+  const sheetTitle = sheet.querySelector(".sheet-title");
+  const sheetBody = sheet.querySelector(".sheet-body");
+  const sheetClose = sheet.querySelector(".sheet-close");
+  const sheetEdit = sheet.querySelector(".sheet-edit");
+
+  let openId = null;
+  let editing = false;
+
+  function noteKey(idx) {
+    return `note_${CURRENT_WK}_${idx}`; 
+  }
+  function renderRead(idx) {
+    const note = localStorage.getItem(noteKey(idx)) || "";
+    const contentHtml = `<div class="section-content">${NAV_CONTENT[idx] || ""}</div>` +
+      (note ? `<div class="section-note" style="margin-top:10px;white-space:pre-wrap;">${note}</div>` : "");
+    sheetBody.innerHTML = contentHtml;
+    editing = false;
+  }
+  function renderEdit(idx) {
+    const note = localStorage.getItem(noteKey(idx)) || "";
+    sheetBody.innerHTML = `
+    <textarea class="note-input" placeholder="여기에 메모를 입력하세요...">${note}</textarea>
+    <div class="save-row">
+      <button type="button" class="save-btn">저장</button>
+      <button type="button" class="cancel-btn">취소</button>
+    </div>
+  `;
+    sheetBody.querySelector(".save-btn").onclick = () => {
+      const val = sheetBody.querySelector(".note-input").value;
+      localStorage.setItem(noteKey(idx), val);
+      renderRead(idx);
+    };
+    sheetBody.querySelector(".cancel-btn").onclick = () => renderRead(idx);
+    editing = true;
+  }
+
+  document.querySelectorAll(".nav-btn").forEach((btn, idx) => {
+    btn.addEventListener("click", () => {
+      if (openId === idx) { sheet.hidden = !sheet.hidden; return; }
+      openId = idx;
+      sheetTitle.textContent = NAV_LABELS[idx];
+      renderRead(idx);
+      sheet.hidden = false;
+    });
+  });
+
+  sheetEdit.addEventListener("click", () => {
+    if (openId == null) return;
+    editing ? renderRead(openId) : renderEdit(openId);
+  });
+
+  function closeSheet() { sheet.hidden = true; openId = null; editing = false; }
+  sheetClose.addEventListener("click", closeSheet);
+  document.addEventListener("keydown", e => { if (e.key === "Escape") closeSheet(); });
+
+  function customTasksKey(day) { return `customTasks_${CURRENT_WK}_${day}`; }
+
+    function getTasksFor(day) {
+      const raw = localStorage.getItem(customTasksKey(day));
+      if (raw) {
+        try { const arr = JSON.parse(raw); if (Array.isArray(arr) && arr.length) return arr; } catch (e) { }
+      }
+      return tasksByDay[day] || [];
+    }
+
+    function setTasksFor(day, list) {
+      localStorage.setItem(customTasksKey(day), JSON.stringify(list));
+      state[day] = []; saveAndUpdate(day);
+    }
+
+    function openEditToday() {
+      const list = getTasksFor(currentDay);
+      sheetTitle.textContent = "오늘 할 일 편집";
+      sheetBody.innerHTML = `
+      <textarea class="note-input" placeholder="줄바꿈으로 항목 구분">${list.join("\n")}</textarea>
+      <div class="save-row">
+        <button type="button" class="save-btn">저장</button>
+      </div>
+    `;
+      sheetBody.querySelector(".save-btn").onclick = () => {
+        const val = sheetBody.querySelector(".note-input").value || "";
+        const lines = val.split("\n").map(s => s.trim()).filter(Boolean);
+        setTasksFor(currentDay, lines);
+        renderDay();
+        closeSheet(); // 저장 후 즉시 닫기
+      };
+      sheet.hidden = false;
+    }
+
+    document.querySelector(".icons-edit").addEventListener("click", openEditToday);
+
+    const _renderDay_orig = renderDay;
+    renderDay = function () {
+      const [emoji, name] = weekday[currentDay].split(/\s+/);
+      document.querySelector(".subhead").textContent = `${name}요일 (${emoji})`;
+      hero.innerHTML = "";
+      const list = getTasksFor(currentDay);
+      list.forEach((t, i) => {
+        const div = document.createElement("div");
+        div.className = "task";
+        const checked = (state[currentDay]?.[i]) === true;
+        div.innerHTML = `<span>${t}</span><input type="checkbox" data-idx="${i}" ${checked ? "checked" : ""}>`;
+        hero.appendChild(div);
+      });
+      updateDayDone(currentDay);
+    };
+
+    (function refreshWeekIfChanged() {
+      const wk = weekKey();
+      if (wk !== CURRENT_WK) {
+        CURRENT_WK = wk;
+        STORE_KEY = `tasksState_${CURRENT_WK}`;
+        state = JSON.parse(localStorage.getItem(STORE_KEY) || "{}");
+        for (let d = 0; d < 7; d++) updateDayDone(d);
+        renderDay();
+      }
+    })();
+  </script>
+</body>
+</html>
