@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="manifest" href="manifest.json">
+  <meta name="theme-color" content="#ffffff">
+  <link rel="stylesheet" href="vp.css">
+  <title>체력 단련</title>
+  </head>
+<body>
+  <main class="page">
+
+    <section class="subhead"></section>
+
+    <div class="day-nav outside">
+      <button type="button" class="prev">◀</button>
+      <button type="button" class="next">▶</button>
+    </div>
+
+    <section class="hero" id="page-home" role="region" aria-label="메인"></section>
+
+    <section class="subhead">주간 진행표</section>
+
+    <section class="strip">
+    <div class="icons-edit-bar"><button type="button" class="icons-edit">✏️</button></div>
+
+      <div class="icons">
+        <div class="icon s">日</div>
+        <div class="icon">月</div>
+        <div class="icon">火</div>
+        <div class="icon">水</div>
+        <div class="icon">木</div>
+        <div class="icon">金</div>
+        <div class="icon t">土</div>
+      </div>
+      <div class="cards">
+        <div class="card s">養生<br>體鍛<br>飛越<br>飛徙</div>
+        <div class="card">靜養<br>養生</div>
+        <div class="card">養生<br>體鍛<br>正形<br>飛徙</div>
+        <div class="card">養生<br>體鍛<br>游泳<br>飛徙</div>
+        <div class="card">養生<br>體鍛<br>飛越<br>飛徙</div>
+        <div class="card">養生<br>體鍛<br>正形<br>飛徙</div>
+        <div class="card t">養生<br>體鍛<br>游泳</div>
+      </div>
+    </section>
+
+    <div id="sheet" class="sheet" hidden>
+      <div class="sheet-head">
+        <span class="sheet-title"></span>
+        <div class="sheet-actions">
+          <button type="button" class="sheet-edit">✏️</button>
+          <button type="button" class="sheet-close">×</button>
+        </div>
+      </div>
+      <div class="sheet-body"></div>
+    </div>
+
+    <nav class="bottom" aria-label="하단 내비게이션">
+      <div class="nav-btn">體鍛</div>
+      <div class="nav-btn">正形</div>
+      <div class="nav-btn">飛徙</div>
+      <div class="nav-btn">飛越</div>
+      <div class="nav-btn">游泳</div>
+      <div class="nav-btn">養生</div>
+    </nav>
+  </main>
+
+  <script src="vp.js" defer></script>
+  <script>
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker.register('./service-worker.js');
+    }
+  </script>
+</body>
+</html>

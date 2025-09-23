@@ -1,5 +1,5 @@
 {
-  "id": "/VitalPath",
+  "id": "./",
   "name": "VitalPath",
   "short_name": "ViP",
   "start_url": "./index.html",
@@ -8,15 +8,7 @@
   "background_color": "#ffffff",
   "theme_color": "#ffffff",
   "icons": [
-    {
-      "src": "w192.png",
-      "sizes": "192x192",
-      "type": "image/png"
-    },
-    {
-      "src": "w512.png",
-      "sizes": "512x512",
-      "type": "image/png"
-    }
+    { "src": "w192.png", "sizes": "192x192", "type": "image/png" },
+    { "src": "w512.png", "sizes": "512x512", "type": "image/png" }
   ]
 }

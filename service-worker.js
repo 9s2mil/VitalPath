@@ -2,13 +2,12 @@ const CACHE_NAME = "VitalPath-250923";
 
 const FILES_TO_CACHE = [
   "index.html",
-  "vp.css",
-  "vp.js",
+  "vp.css",    
+  "vp.js",     
   "manifest.json",
-  "icons/wl192.png",
-  "icons/wl512.png"
+  "w192.png",
+  "w512.png"
 ];
-
 
 self.addEventListener("install", (event) => {
   event.waitUntil(
