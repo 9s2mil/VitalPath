@@ -1,14 +1,8 @@
 :root{ --gap: 10px; --radius: 12px; --border: 2px solid black; --fg:#111; --bg:#Fff; --muted:#787878; --card:#fff; }
 *{box-sizing:border-box}
 html,body{height:100%;font-family: 'Noto Serif KR', serif; }
-.app-wrap{
-  max-width:390px;
-  width:100%;
-  height:auto;
-  background:#fff;
-  box-shadow:0 0 30px rgba(0,0,0,0.4);
-  overflow:hidden;
-}
+.app-wrap{width:390px;height:auto;background:#fff;box-shadow:0 0 30px rgba(0,0,0,0.4);overflow:hidden;}
+
 body{margin:0;color:var(--fg);background:var(--bg);display:flex;justify-content:center;}
 .page{width:100%;margin:0 auto;display:flex;flex-direction:column;gap:var(--gap);padding:var(--gap);min-height: 100svh;}
 .hero {
@@ -53,31 +47,3 @@ button,a.btn{all:unset; display:block; cursor:pointer; text-align:center; paddin
 .sheet-body .save-row{display:flex;justify-content:flex-end;gap:8px;margin-top:8px}
 .sheet-body .save-btn,.sheet-body .cancel-btn{padding:6px 12px;border:1px solid #222;border-radius:10px;background:#fff;cursor:pointer}
 .sheet-edit,.sheet-close{border:1px solid #222;border-radius:10px;background:#fff;cursor:pointer;padding:4px 10px}
-/* ===== 반응형: 화면이 기준보다 작을 때 ===== */
-@media (max-width: 420px) {
-
-    /* 요일 아이콘: 7 → 4열 */
-    .icons {
-        grid-template-columns: repeat(4, 1fr);
-    }
-
-    /* 카드: 7 → 2열 */
-    .cards {
-        grid-template-columns: repeat(2, 1fr);
-    }
-
-    .card {
-        height: auto;
-        min-height: 120px;
-    }
-
-    /* 하단 네비: 6 → 3열 */
-    nav.bottom {
-        grid-template-columns: repeat(3, 1fr);
-    }
-
-    .nav-btn {
-        height: 64px;
-        font-size: 15px;
-    }
-}
