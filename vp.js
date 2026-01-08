@@ -1,13 +1,12 @@
 const tasksByDay = {
-0: [""],
-1: [""],
-2: [""],
-3: [""],
-4: [""],
-5: [""],
-6: [""]
+    0: [],
+    1: [],
+    2: [],
+    3: [],
+    4: [],
+    5: [],
+    6: []
 };
-
 const weekday = ["☀️ 일", "🌙 월", "🔥 화", "💧 수", "🌲 목", "💰 금", "🌍 토"];
 const hero = document.getElementById("page-home");
 let currentDay = new Date().getDay();
@@ -41,19 +40,25 @@ updateDayDone(day);
 }
 
 function renderDay() {
-const [emoji, name] = weekday[currentDay].split(/\s+/);
-document.querySelector(".subhead").textContent = `${name}요일 (${emoji})`;
-hero.innerHTML = "";
-const list = tasksByDay[currentDay] || [];
-list.forEach((t, i) => {
-    const div = document.createElement("div");
-    div.className = "task";
-    const checked = (state[currentDay]?.[i]) === true;
-    div.innerHTML = `<span>${t}</span><input type="checkbox" data-idx="${i}" ${checked ? "checked" : ""}>`;
-    hero.appendChild(div);
-});
-updateDayDone(currentDay);
+    const [emoji, name] = weekday[currentDay].split(/\s+/);
+    document.querySelector(".subhead").textContent = `${name}요일 (${emoji})`;
+
+    hero.innerHTML = "";
+    const list = getTasksFor(currentDay); 
+
+    list.forEach((t, i) => {
+        const div = document.createElement("div");
+        div.className = "task";
+        const checked = (state[currentDay]?.[i]) === true;
+        div.innerHTML =
+            `<span>${t}</span>` +
+            `<input type="checkbox" data-idx="${i}" ${checked ? "checked" : ""}>`;
+        hero.appendChild(div);
+    });
+
+    updateDayDone(currentDay);
 }
+
 
 hero.addEventListener("change", (e) => {
 if (e.target.matches('input[type="checkbox"][data-idx]')) {
@@ -179,22 +184,6 @@ function openEditToday() {
 
 document.querySelector(".icons-edit").addEventListener("click", openEditToday);
 
-const _renderDay_orig = renderDay;
-renderDay = function () {
-    const [emoji, name] = weekday[currentDay].split(/\s+/);
-    document.querySelector(".subhead").textContent = `${name}요일 (${emoji})`;
-    hero.innerHTML = "";
-    const list = getTasksFor(currentDay);
-    list.forEach((t, i) => {
-    const div = document.createElement("div");
-    div.className = "task";
-    const checked = (state[currentDay]?.[i]) === true;
-    div.innerHTML = `<span>${t}</span><input type="checkbox" data-idx="${i}" ${checked ? "checked" : ""}>`;
-    hero.appendChild(div);
-    });
-    updateDayDone(currentDay);
-};
-
 (function refreshWeekIfChanged() {
     const wk = weekKey();
     if (wk !== CURRENT_WK) {
@@ -205,3 +194,4 @@ renderDay = function () {
     renderDay();
     }
 })();
+
