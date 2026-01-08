@@ -1,20 +1,44 @@
 :root{ --gap: 2vw; --radius: 12px; --border: 2px solid black; --fg:#111; --bg:#Fff; --muted:#787878; --card:#fff; }
 *{box-sizing:border-box}
-html,body{height:100%;font-family: 'Noto Serif KR', serif; }
-body{ margin:0;color:var(--fg); background:var(--bg); display:flex; min-height:100dvh; }
-.page{width:min(1080px, 100%); margin:0 auto; display:flex; flex-direction:column; gap:var(--gap); padding:var(--gap)}
+html,
+body {
+    height: 100%;
+    font-family: 'Noto Serif KR', serif;
+}
+
+body {
+    margin: 0;
+    /* 연노랑 여백 */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+.page {
+    width: 430px;
+    height: 844px;
+    max-width: 430px;
+    max-height: 844px;
+
+    display: flex;
+    flex-direction: column;
+    gap: var(--gap);
+    padding: var(--gap);
+    overflow: hidden;
+    background: #fff;
+}
 .hero{flex:1; min-height:48dvh; padding:3vw;border:1.4px solid black; border-radius:9px;font-weight:600;font-size:5vw;}
-.subhead{padding:13px 2vw; font-weight:600; font-size:3.2vw; height:4vh;width:25vw;display:flex;align-items:center;justify-content:center;border:1.4px solid black; border-radius:9px; position:relative;}
+.subhead{padding:13px 2vw; font-weight:600; font-size:13px; height:4vh;width:25vw;display:flex;align-items:center;justify-content:center;border:1.4px solid black; border-radius:9px; position:relative;}
 .day-nav.outside{ position:relative;margin-top:-36px;display:flex;gap:8px;justify-content:flex-end;padding-right:12px;}
 .day-nav.outside button{ padding:0; border:none; border-radius:10px; background:#fff; cursor:pointer;}
 .strip{padding:var(--gap);border:1.4px solid black;  border-radius:9px;position:relative;}
 .strip .icons{display:grid; grid-template-columns:repeat(7, 1fr); gap:9px; margin-bottom:9px; }
 .icons-edit-bar{ position:absolute; right:12px; top:-5vh; }
 .icons-edit{ padding:4px 10px; border:none; border-radius:10px; background:#fff; cursor:pointer; }
-.icon{height:44px; border:var(--border); border-radius:10px; background:var(--card); height:3vh;font-size:3vw;font-weight:600;border:1.4px solid black;}
+.icon{height:44px; border:var(--border); border-radius:10px; background:var(--card); height:3vh;font-size:16px;font-weight:600;border:1.4px solid black;}
 .strip .cards{ display:grid; grid-template-columns:repeat(7, 1fr); gap:9px; }
-.card{height:160px;  border:var(--border); border-radius:9px; height:19vh; font-size:4vw;line-height: 1.5;}
-nav.bottom{ position:sticky; bottom:0; padding:0; display:grid; grid-template-columns:repeat(6,1fr); gap:9px; z-index:5;  font-size:4.5vw;}
+.card{height:160px;  border:var(--border); border-radius:9px; height:19vh; font-size:15px;line-height: 1.5;}
+nav.bottom{ position:sticky; bottom:0; padding:0; display:grid; grid-template-columns:repeat(6,1fr); gap:9px; z-index:5;  font-size:17px;}
 .nav-btn{height:10vh; border:var(--border); border-radius:9px; border:1.4px solid black;}
 button,a.btn{all:unset; display:block; cursor:pointer; text-align:center; padding:10px; border-radius:10px; border:var(--border); background:#f6f6f6}
 .row{display:flex; gap:10px}
@@ -26,7 +50,7 @@ button,a.btn{all:unset; display:block; cursor:pointer; text-align:center; paddin
 .task span{ order:1; margin-right:auto; }
 .task input[type="checkbox"]{ order:2; margin-left:9px;}
 .icon.done { background:#FFF3B0; border-color:#F1C40F;}
-.sheet{position:fixed;left:50%;transform:translateX(-50%);top:0;width:100vw;background:#fff;border:2px solid #222;border-radius:16px;box-shadow:0 10px 30px rgba(0,0,0,.2);z-index:4; height: 100vh;}
+.sheet{position:fixed;left:50%;transform:translateX(-50%);top:0;width:100vw;background:#fff;border:2px solid #222;border-radius:16px;box-shadow:0 10px 30px rgba(0,0,0,.2);z-index:6; height: 100vh;}
 .sheet[hidden]{display:none}
 .sheet-actions{display:flex;gap:8px}
 .sheet-head{display:flex;align-items:center;justify-content:space-between;padding:10px 14px;border-bottom:1px solid #eee;font-weight:700}
@@ -35,3 +59,145 @@ button,a.btn{all:unset; display:block; cursor:pointer; text-align:center; paddin
 .sheet-body .save-row{display:flex;justify-content:flex-end;gap:8px;margin-top:8px}
 .sheet-body .save-btn,.sheet-body .cancel-btn{padding:6px 12px;border:1px solid #222;border-radius:10px;background:#fff;cursor:pointer}
 .sheet-edit,.sheet-close{border:1px solid #222;border-radius:10px;background:#fff;cursor:pointer;padding:4px 10px}
+
+:root {
+    --gap: 12px;
+    --radius: 12px;
+    --border: 1.4px solid #000;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+html,
+body {
+    height: 100%;
+    margin: 0;
+    font-family: 'Noto Serif KR', serif;
+}
+
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* 📱 고정 모바일 화면 */
+.page {
+    width: 430px;
+    height: 844px;
+    background: #fff;
+    display: flex;
+    flex-direction: column;
+    padding: 12px;
+    gap: 12px;
+    overflow: hidden;
+}
+
+/* 상단 */
+.subhead {
+    height: 44px;
+    border: var(--border);
+    border-radius: 12px;
+    padding: 0 12px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-weight: 600;
+}
+
+.day-nav button {
+    border: none;
+    background: #fff;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+/* 메인 영역 */
+.hero {
+    flex: 1;
+    border: var(--border);
+    border-radius: 16px;
+    padding: 14px;
+    overflow: auto;
+}
+
+/* 중간 타이틀 */
+.subhead.mid {
+    justify-content: space-between;
+}
+
+.icons-edit {
+    border: none;
+    background: #fff;
+    cursor: pointer;
+}
+
+/* 주간표 */
+.strip {
+    border: var(--border);
+    border-radius: 16px;
+    padding: 10px;
+}
+
+.icons {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 8px;
+    margin-bottom: 8px;
+}
+
+.icon {
+    height: 36px;
+    border: var(--border);
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.cards {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 8px;
+}
+
+.card {
+    height: 140px;
+    border: var(--border);
+    border-radius: 12px;
+    font-size: 14px;
+    line-height: 1.5;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+/* 하단 네비 */
+.bottom {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    gap: 8px;
+}
+
+.nav-btn {
+    height: 64px;
+    border: var(--border);
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 15px;
+}
+
+/* 강조 */
+.s {
+    border-color: red;
+}
+
+.t {
+    border-color: blue;
+}
+/* 정리는 나중에 */
