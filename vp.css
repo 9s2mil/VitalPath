@@ -4,7 +4,7 @@ html,body{height:100%;font-family: 'Noto Serif KR', serif; }
 .app-wrap{width:390px;height:auto;background:#fff;box-shadow:0 0 30px rgba(0,0,0,0.4);overflow:hidden;}
 body{margin:0;color:var(--fg);background:var(--bg);display:flex;justify-content:center;}
 .page{width:100%;margin:0 auto;display:flex;flex-direction:column;gap:var(--gap);padding:var(--gap);}
-.hero{flex:1; min-height:400px; padding:13px;border:1.4px solid black; border-radius:9px;font-weight:600;font-size:17px;}
+.hero{flex:1; min-height:450px; padding:13px;border:1.4px solid black; border-radius:9px;font-weight:600;font-size:17px;}
 .subhead{padding:13px 2px; font-weight:600; font-size:13px; height:33px;width:105px;display:flex;align-items:center;justify-content:center;border:1.4px solid black; border-radius:9px; position:relative;}
 .day-nav.outside{ position:relative;margin-top:-36px;display:flex;gap:8px;justify-content:flex-end;padding-right:12px;}
 .day-nav.outside button{ padding:0; border:none; border-radius:10px; background:#fff; cursor:pointer;}
@@ -14,7 +14,7 @@ body{margin:0;color:var(--fg);background:var(--bg);display:flex;justify-content:
 .icons-edit{ padding:4px 10px; border:none; border-radius:10px; background:#fff; cursor:pointer; }
 .icon{height:34px; border:var(--border); border-radius:10px; background:var(--card); font-size:16px;font-weight:600;border:1.4px solid black;}
 .cards{ display:grid; grid-template-columns:repeat(7, 1fr); gap:9px; }
-.card{height:180px;  border:var(--border); border-radius:9px; font-size:15px;line-height: 1.5;}
+.card{height:130px;  border:var(--border); border-radius:9px; font-size:15px;line-height: 1.5;}
 nav.bottom{ position:sticky; bottom:0; padding:0; display:grid; grid-template-columns:repeat(6,1fr); gap:9px; z-index:5;  font-size:17px;}
 .nav-btn{height:80px; border:var(--border); border-radius:9px; border:1.4px solid black;}
 button,a.btn{all:unset; display:block; cursor:pointer; text-align:center; padding:10px; border-radius:10px; border:var(--border); background:#f6f6f6}
